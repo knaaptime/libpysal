@@ -146,7 +146,6 @@ class KNN(W):
             named_indices = np.asarray(ids)[not_self_indices]
 
         neighbors = {idx: list(indices) for idx, indices in zip(ids, named_indices)}
-        
 
         W.__init__(self, neighbors, **kwargs)
 

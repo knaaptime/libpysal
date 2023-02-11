@@ -27,7 +27,7 @@ def _dict_to_df(neighbors, weights):
     for key in neighbors.keys():
         combined[key] = dict(zip(neighbors[key], weights[key]))
 
-    combineddf = pd.DataFrame.from_dict(combined).stack()
+    combineddf = pd.DataFrame.from_dict(combined).T.stack()
     combineddf = combineddf.to_frame(name="weight")
     combineddf.index.set_names(["focal", "neighbor"], inplace=True)
     return combineddf
@@ -202,7 +202,7 @@ class W(object):
     ):
         self.silence_warnings = silence_warnings
         islands = list()
-        if not weights:
+        if weights is None:
             weights = {}
             for key in neighbors.keys():
                 if len(neighbors[key]) == 0:
